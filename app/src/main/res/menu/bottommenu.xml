@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/appts"
+        android:title="Appointments"
+        android:icon="@drawable/appointments"
+        app:cnb_textColor="#000"
+        app:cnb_iconColor="#000"
+        app:cnb_backgroundColor="#fff"
+        />
+    <item
+        android:id="@+id/book"
+        android:title="Book"
+        android:icon="@drawable/bookapp"
+        app:cnb_textColor="#000"
+        app:cnb_iconColor="#000"
+        app:cnb_backgroundColor="#fff"
+        />
+    <item
+        android:id="@+id/profileDet"
+        android:title="Profile"
+        android:icon="@drawable/profile"
+        app:cnb_textColor="#000"
+        app:cnb_iconColor="#000"
+        app:cnb_backgroundColor="#fff"
+        />
+</menu>

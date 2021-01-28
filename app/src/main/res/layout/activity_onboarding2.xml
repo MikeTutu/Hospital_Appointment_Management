@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    tools:context=".Onboarding2">
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/secpg"
+        android:layout_gravity="center|top"
+        android:layout_marginTop="80px"/>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Find Doctors"
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        android:textColor="#000000"
+        android:textSize="70px"
+        android:textFontWeight="bold"
+        android:layout_marginTop="80px"/>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Find doctors and specialists for different types of medical conditions and book appointments when needed"
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        android:textColor="#696969"
+        android:textSize="50px"
+        android:layout_marginTop="250px"/>
+
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="850px"
+        android:layout_height="27pt"
+        android:layout_gravity="center"
+        android:layout_marginTop="550px"
+        android:background="@drawable/roundcorner"
+        android:fontFamily="sans-serif"
+        android:text="Back"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:textSize="55px" />
+
+    <Button
+        android:id="@+id/btnGetStarted"
+        android:layout_width="850px"
+        android:layout_height="27pt"
+        android:layout_gravity="center"
+        android:layout_marginTop="750px"
+        android:width="41pt"
+        android:height="27pt"
+        android:text="Get started"
+        android:textSize="55px"
+        android:textAllCaps="false"
+        android:textColor="#000000"
+        android:background="@drawable/roundcorner_plain"/>
+</FrameLayout>

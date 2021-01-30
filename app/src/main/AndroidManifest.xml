@@ -27,7 +27,7 @@
         <activity
             android:name=".Onboarding1"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_onboarding1"
+
             android:theme="@style/FullscreenTheme" />
         <activity
             android:name=".MainActivity"

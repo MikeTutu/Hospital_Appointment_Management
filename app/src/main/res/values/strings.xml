@@ -1,10 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Appointment Management</string>
-    <string name="Onboarding1"></string>
-    <string name="residence_prompt">Residence</string>
-    <string name="title_activity_onboarding1">onboarding1</string>
-    <string-array name="residence_array">
-        <item>Resident </item>
-        <item> Nonresident</item>
-    </string-array>
+    <string name="spinner_title">Spinner</string>
+
 </resources>

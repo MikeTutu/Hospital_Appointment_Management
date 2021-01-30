@@ -22,10 +22,10 @@ public class Profile extends AppCompatActivity {
     ImageView button;
 
     ListView listView;
-    String sDoctor[] = {"Doc. Esi Owusu", "Doc. Mike Tetteh", "Doc. Larry Sowah", "Doc. Jeffri Bannor", "Mike", "Mike", "Mike", "Mike" };
-    String sRm [] ={"Room 204", "Room 121", "Room 121", "Room 121", "Room 121", "Room 121", "Room 121", "Room 121"};
-    String sDate [] = {"Monday, 18 January 2021","Wednesday, 14 February 2021", "Monday, 18 January 2021","Friday, 21 February 2021","Friday, 21 February 2021","Friday, 21 February 2021","Friday, 21 February 2021","Friday, 21 February 2021"};
-    String sTime [] = {"9:00-10:00", "01:00-02:00", "04:00-05:00", "12:00-01:00", "12:00-01:00", "12:00-01:00", "12:00-01:00", "12:00-01:00"};
+    String sDoctor[] = {"Doc. Esi Owusu", "Doc. Mike Tetteh", "Doc. Larry Sowah", "Doc. Jeffri Bannor","Doc. Esi Owusu", "Doc. Mike Tetteh", "Doc. Larry Sowah", "Doc. Jeffri Bannor"};
+    String sRm [] ={"Room 204", "Room 121", "Room 121", "Room 121", "Room 204", "Room 121", "Room 121", "Room 121"};
+    String sDate [] = {"Monday, 18 January 2021","Wednesday, 14 February 2021", "Monday, 18 January 2021","Friday, 21 February 2021", "Monday, 18 January 2021","Wednesday, 14 February 2021", "Monday, 18 January 2021","Friday, 21 February 2021"};
+    String sTime [] = {"9:00AM-10:00AM", "01:00PM-02:00PM", "04:00PM-05:00PM", "12:00PM-01:00PM", "9:00AM-10:00AM", "01:00PM-02:00PM", "04:00PM-05:00PM", "12:00PM-01:00PM"};
 
     int icons[] = {R.drawable.ic_doctor, R.drawable.ic_doctor, R.drawable.ic_doctor, R.drawable.ic_doctor, R.drawable.ic_doctor, R.drawable.ic_doctor, R.drawable.ic_doctor, R.drawable.ic_doctor};
 
@@ -39,6 +39,14 @@ public class Profile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Profile.this, Settings.class);
+                startActivity(intent);
+            }
+        });
+        button = (ImageView) findViewById(R.id.viewProfile);
+        button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Profile.this, ProfileDetails.class);
                 startActivity(intent);
             }
         });

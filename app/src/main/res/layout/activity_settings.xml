@@ -27,7 +27,7 @@
             android:textColor="#3036FF"/>
 
         <ImageButton
-            android:id="@+id/myAcc"
+            android:id="@+id/btnmyAcc"
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:layout_margin="10dp"
@@ -35,7 +35,7 @@
             android:layout_gravity="right"
             app:srcCompat="@drawable/my_account" />
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/acc_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -45,7 +45,7 @@
             android:textColor="#3036FF"/>
 
         <ImageButton
-            android:id="@+id/sts"
+            android:id="@+id/btnsts"
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:layout_margin="10dp"
@@ -53,7 +53,7 @@
             app:srcCompat="@mipmap/sts_background" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/sts"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -70,8 +70,9 @@
             android:layout_margin="10dp"
             android:layout_weight="1"
             app:srcCompat="@drawable/ic_notification" />
+
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -82,14 +83,14 @@
 
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/btnLogout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_weight="1"
             app:srcCompat="@drawable/ic_logout" />
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/logout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"

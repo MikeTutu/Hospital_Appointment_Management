@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Spinner;
 import android.widget.ArrayAdapter;
@@ -19,9 +21,13 @@ import android.os.Bundle;
 public class SignUp extends AppCompatActivity{
     final int MIN_PASSWORD_LENGTH = 6;
     Button button;
-    EditText etFullname, etEmail, etId, etPassword;
+    EditText etFullname, etEmail, etId, etHall, etAge, etPhone, etPassword;
     EditText et;
     String st;
+    int radioId;
+    RadioGroup radioGroup;
+    RadioButton radioButton;
+
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -30,12 +36,17 @@ public class SignUp extends AppCompatActivity{
 
         viewInitializations();
 
+        radioGroup = findViewById(R.id.radioGroup);
+
+
         et = findViewById(R.id.editID);
         button = (Button) findViewById(R.id.signup);
         button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SignUp.this, ProfileDetails.class);
+                radioId = radioGroup.getCheckedRadioButtonId();
+
                if(validateInput()) {
                    st = et.getText().toString();
                    intent.putExtra("Value", st);
@@ -58,12 +69,17 @@ public class SignUp extends AppCompatActivity{
 
     }
 
+
+
     void viewInitializations() {
         etFullname = findViewById(R.id.fullname);
         etEmail = findViewById(R.id.emailtxt);
         etPassword = findViewById(R.id.et_password);
         etId= findViewById(R.id.editID);
-
+        etHall = findViewById(R.id.hall);
+        etAge = findViewById(R.id.et_age);
+        etPhone = findViewById(R.id.phone);
+        radioButton = findViewById(radioId);
 
     }
     // Checking if the input in form is valid
@@ -80,11 +96,22 @@ public class SignUp extends AppCompatActivity{
             etEmail.setError("Please Enter Email");
             return false;
         }
+        if (etHall.getText().toString().equals("")) {
+            etHall.setError("Please Enter Hall Name");
+            return false;
+        }
+        if (etAge.getText().toString().equals("")) {
+            etAge.setError("Please Enter Age");
+            return false;
+        }
+        if (etPhone.getText().toString().equals("")) {
+            etPhone.setError("Please Enter Contact Number");
+            return false;
+        }
         if (etPassword.getText().toString().equals("")) {
             etPassword.setError("Please Enter Password");
             return false;
         }
-
 
         // checking the proper email format
         if (!isEmailValid(etEmail.getText().toString())) {
@@ -118,6 +145,10 @@ public class SignUp extends AppCompatActivity{
             String ID = etId.getText().toString();
             String email = etEmail.getText().toString();
             String password = etPassword.getText().toString();
+            String hall = etHall.getText().toString();
+            String Age = etAge.getText().toString();
+            String Gender = radioButton.getText().toString();
+            String Phone = etPhone.getText().toString();
 
 
             Toast.makeText(this,"Login Success",Toast.LENGTH_SHORT).show();

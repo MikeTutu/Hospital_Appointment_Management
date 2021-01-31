@@ -4,8 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.DataSetObserver;
 import android.os.Bundle;
@@ -43,13 +45,12 @@ public class BookAppts extends  AppCompatActivity {
     String sTime[] = {"9:00AM-10:00AM", "01:00PM-02:00PM", "04:00PM-05:00PM", "12:00PM-01:00PM", "9:00AM-10:00AM", "01:00PM-02:00PM", "04:00PM-05:00PM", "12:00PM-01:00PM"};
     int icons[] = {R.drawable.green_cicle, R.drawable.green_cicle, R.drawable.ambient_circle, R.drawable.green_cicle, R.drawable.ambient_circle, R.drawable.red_circle, R.drawable.green_cicle, R.drawable.red_circle};
 
-
+    AlertDialog.Builder builder;
     Button mBtn, alertBn;
     TextView mTv;
     Calendar c;
     DatePickerDialog dpd;
-    ListView listView;
-    boolean dateChosenBefore;
+    ListView listView, newlistView;
     String bookdate = "31/1/2021";
     ArrayList<String> entries;
 
@@ -60,23 +61,8 @@ public class BookAppts extends  AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_appts);
 
-     /*   listView = (ListView)findViewById(R.id.listView);
-        String [] values = new String[] {
-          "Doc 1", "Doc 2", "Doc 3", "Doc 4", "Doc 5", "Doc 2", "Doc 3", "Doc 4", "Doc 5"
-        };
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(BookAppts.this, android.R.layout.simple_list_item_1, android.R.id.text1, values);
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-
-
-                @Override
-                public void onItemClick (AdapterView < ? > parent, View view,int position, long id){
-                String itemValue = (String) listView.getItemAtPosition(position);
-                Toast.makeText(BookAppts.this, itemValue, Toast.LENGTH_SHORT).show();
-            }
-
-        });*/
+     newlistView = findViewById(R.id.listView);
+     builder = new AlertDialog.Builder(BookAppts.this);
 
 
         mTv = (TextView) findViewById(R.id.mTv);
@@ -96,57 +82,49 @@ public class BookAppts extends  AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int mYear, int mMonth, int mDay) {
                         mTv.setText(mDay + "/" + (mMonth + 1) + "/" + mYear);
-
-
                         String bdate = mTv.getText().toString();
 
-                        if (bdate.equals(bookdate)) {
-                            listView = (ListView) findViewById(R.id.listView);
-                            listView = (ListView) findViewById(R.id.listView);
-                            String[] values = new String[]{
-                                    "Doc. Michael Frimpong", "Doc. Esi Owusu", "Doc. Rose Sally", "Doc. Mike Tetteh", "Doc. Jeffi Bannor", "Doc. Mike Tetteh", "Doc. Esi Owusu", "Doc. Rose Sally4", "Doc. Mike Tetteh"
-                            };
-                            int[] icons = new int[]{R.drawable.green_cicle, R.drawable.green_cicle, R.drawable.ambient_circle, R.drawable.green_cicle, R.drawable.ambient_circle, R.drawable.red_circle, R.drawable.green_cicle, R.drawable.red_circle};
+                        newlistView = findViewById(R.id.listView);
+                        if(bookdate.equals(bdate)){
+                        final ThisAdapter adapter = new ThisAdapter(BookAppts.this, sDoctor, sTime, icons );
+                        newlistView.setAdapter(adapter);
 
+                        newlistView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                builder.setMessage(R.string.dialog_message) .setTitle(R.string.dialog_title);
+                                builder.setMessage("Do you want to book an appointment with this Doctor?")
+                                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int id) {
 
-                            ArrayAdapter adapter = new ArrayAdapter<String>(BookAppts.this, android.R.layout.simple_list_item_1, android.R.id.text1, values);
+                                                Toast.makeText(getApplicationContext(),"Booking Successful",
+                                                        Toast.LENGTH_SHORT).show();
+                                            }
+                                        })
+                                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int id) {
+                                                //  Action for 'NO' Button
+                                                dialog.cancel();
+                                                Toast.makeText(getApplicationContext(),"Booking Cancelled",
+                                                        Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                                //Creating dialog box
+                                AlertDialog alert = builder.create();
+                                //Setting the title manually
+                                alert.setTitle("Confirm Booking");
+                                alert.show();
+                            }
+                        });
 
-                            listView.setAdapter(adapter);
-                            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        //Alert
 
-
-                                @Override
-                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                    String itemValue = (String) listView.getItemAtPosition(position);
-
-                                    Toast.makeText(BookAppts.this, itemValue, Toast.LENGTH_SHORT).show();
-
-
-                                }
-
-                            });
 
                         }
-                        else {
-                            listView = (ListView) findViewById(R.id.listView);
-                            String[] valuesB = new String[]{
-                                    "Doc. Jeffi Bannor", "Doc. Mike Tetteh", "Doc. Michael Frimpong", "Doc. Esi Owusu", "Doc. Rose Sally", "Doc. Mike Tetteh", "Doc. Jeffi Bannor"
-                            };
-                            adapterB = new ArrayAdapter<String>(BookAppts.this, android.R.layout.simple_list_item_1, android.R.id.text1, valuesB);
-                            listView.setAdapter(adapterB);
-                            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-
-                                @Override
-                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                    String itemValue = (String) listView.getItemAtPosition(position);
-                                    Toast.makeText(BookAppts.this, itemValue, Toast.LENGTH_SHORT).show();
-
-
-                                }
-
-                            });
-                        }
+                        else{Toast.makeText(getApplicationContext(),"None Available",Toast.LENGTH_SHORT).show();}
+                        //start
+                        //Initial IF code goes here
+                      //end
 
 
                     }
@@ -209,7 +187,10 @@ public class BookAppts extends  AppCompatActivity {
         spinner.setAdapter(dataAdapter);
 
 
+       /* newlistView = findViewById(R.id.listView);
 
+        ThisAdapter adapter = new ThisAdapter(this, sDoctor, sTime, icons);
+        listView.setAdapter(adapter);*/
 
 
 
@@ -217,13 +198,13 @@ public class BookAppts extends  AppCompatActivity {
     }
 
     //Create Adapter
-  /*  class ThisAdapter extends ArrayAdapter<String> {
+   class ThisAdapter extends ArrayAdapter<String> {
         Context context;
         String rDoctor[], rTime[];
         int rIcon[];
 
         ThisAdapter(Context c, String doctor[], String time[], int icon[]) {
-            super(c, R.layout.row, R.id.doc, doctor);
+            super(c, R.layout.row_appointments, R.id.doc, doctor);
             this.context = c;
             this.rDoctor = doctor;
             this.rTime = time;
@@ -236,7 +217,7 @@ public class BookAppts extends  AppCompatActivity {
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
             LayoutInflater layoutInflater = (LayoutInflater)getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View row_appointments = layoutInflater.inflate(R.layout.row, parent, false);
+            View row_appointments = layoutInflater.inflate(R.layout.row_appointments, parent, false);
 
             ImageView images = row_appointments.findViewById(R.id.image_doc);
             TextView myDoctors = row_appointments.findViewById(R.id.doc);
@@ -249,7 +230,7 @@ public class BookAppts extends  AppCompatActivity {
 
             return row_appointments;
         }
-    }*/
+    }
     //End
 
 }

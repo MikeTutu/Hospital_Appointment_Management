@@ -36,10 +36,11 @@ public class SignUp extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SignUp.this, ProfileDetails.class);
-                st = et.getText().toString();
-                intent.putExtra("Value", st);
-                startActivity(intent);
-
+               if(validateInput()) {
+                   st = et.getText().toString();
+                   intent.putExtra("Value", st);
+                   startActivity(intent);
+               }
 
             }
         });
@@ -49,6 +50,7 @@ public class SignUp extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 Intent intent = new  Intent(SignUp.this, SignIn.class);
+
                 startActivity(intent);
             }
         });
@@ -119,10 +121,7 @@ public class SignUp extends AppCompatActivity{
 
 
             Toast.makeText(this,"Login Success",Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(SignUp.this, ProfileDetails.class);
-            st = et.getText().toString();
-            intent.putExtra("Value", st);
-            startActivity(intent);
+
 
             // Here you can call you API
 
